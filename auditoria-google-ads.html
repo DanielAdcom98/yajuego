@@ -28,6 +28,27 @@
     th.orden[aria-sort="ascending"] .ico{transform:rotate(180deg)}
     @media (prefers-reduced-motion:reduce){ th.orden .ico{transition:none} }
     td.terminos{text-align:left; color:var(--ink-secondary)}
+  
+    /* Desplegables: el sistema compartido no los cubre. Solo tokens, sin colores propios. */
+    details{border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding-block:14px; margin-top:var(--s-4)}
+    details>summary{cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; font-weight:700; font-size:.95rem}
+    details>summary::-webkit-details-marker{display:none}
+    details>summary .menos{display:none}
+    details[open]>summary .mas{display:none}
+    details[open]>summary .menos{display:inline-block}
+    details>*:not(summary){margin-top:var(--s-4)}
+    details>summary:focus-visible{outline:2px solid var(--ink); outline-offset:4px}
+  
+    /* Espaciado de subtitulos y tarjetas; los tres paneles en tres columnas fijas. */
+    .grupo>h3{margin-top:var(--s-5)}
+    .grupo>.note{margin-top:var(--s-3)}
+    .panel-hi+.rules{margin-top:var(--s-5)}
+    .duo-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:900px){.duo-3{grid-template-columns:1fr}}
+      /* En pantallas angostas el ancho minimo de una tabla o diagrama se propagaba al contenedor y
+       desbordaba la pagina; con min-width:0 cada uno desplaza dentro de su propio contenedor. */
+    .app-main{min-width:0}
+    .app-content{min-width:0; max-width:100%}
   </style>
 </head>
 <body class="con-shell">
@@ -47,10 +68,10 @@
       <a href="#resumen"><b></b>En una página<small>01</small></a>
       <a href="#glosario"><b></b>Cinco términos<small>02</small></a>
       <a href="#destino"><b></b>Cómo debería quedar<small>03</small></a>
-      <a href="#medicion"><b></b>La medición<small>04</small></a>
+      <a href="#medicion"><b></b>Clientes nuevos y FTD<small>04</small></a>
       <a href="#reparto"><b></b>El reparto<small>05</small></a>
       <a href="#marca"><b></b>La marca<small>06</small></a>
-      <a href="#negativas"><b></b>Las exclusiones<small>07</small></a>
+      <a href="#negativas"><b></b>Concordancia y exclusiones<small>07</small></a>
       <a href="#competencia"><b></b>La competencia<small>08</small></a>
       <a href="#mercado"><b></b>Mercado y proyección<small>09</small></a>
       <a href="#embudo"><b></b>El registro<small>10</small></a>
@@ -68,7 +89,7 @@
     <main class="app-content wrap" id="contenido">
       <header class="opening">
         <h1>La cuenta funciona. Lo que falla es <em>cómo está armada</em>.</h1>
-        <p class="lede">Google Ads está trayendo registros a un costo que se sostiene, y creciendo mes a mes. El problema es que cuatro campañas compran las mismas búsquedas entre ellas, la campaña de marca gasta la mitad de su plata fuera de la marca, y cinco de las dieciséis campañas se miden con un contador que no cuenta clientes. Cada sección plantea un problema y la acción que lo corrige.</p>
+        <p class="lede">Google Ads está trayendo registros a un costo que se sostiene, y mejorando mes a mes. El problema es cómo está armada: cuatro campañas compran las mismas búsquedas entre ellas, la campaña de marca gasta la mitad de su plata fuera de la marca, y la cuenta no distingue a los clientes nuevos de los recurrentes, que es lo que importa cuando el objetivo es el FTD. Cada sección plantea un problema y la acción que lo corrige.</p>
         <div class="opening-meta">
           <div><b>26 de agosto - 24 de septiembre de 2026</b><span>Periodo</span></div>
           <div><b>Registro completado</b><span>Resultado que se mide</span></div>
@@ -81,23 +102,18 @@
 
       <section class="grupo" id="resumen">
         <div class="head">
-          <h2>En una página</h2>
-          <p class="lede">La cuenta invierte 268,9 millones al mes y trae 3.762 registros, a 71.495 pesos cada uno. Y va mejorando: en las campañas de búsqueda, que son el 81% de la inversión, el costo por registro bajó un 13% desde enero mientras la inversión subía un 46%. Lo que sigue son las seis cosas que están frenando ese avance, cada una con lo que hay que hacer.</p>
+          <h2>Seis correcciones para bajar el costo por registro</h2>
+          <p class="lede"><b>La idea:</b> la cuenta funciona y mejora, pero compra caro y no sabe a quién le habla. Estas son las seis cosas que frenan ese avance, cada una con su corrección.</p>
         </div>
 
-        <dl class="tira-cifras">
-          <div><dt>Inversión mensual</dt><dd>268,9 millones</dd></div>
-          <div><dt>Registros al mes</dt><dd>3.762</dd></div>
-          <div><dt>Costo por registro</dt><dd>71.495</dd></div>
-          <div><dt>Mejor campaña de la cuenta</dt><dd>46.732</dd></div>
-        </dl>
+        <dl class="tira-cifras"><div><dt>Inversión mensual</dt><dd>268,9 M</dd></div><div><dt>Registros al mes</dt><dd>3.762</dd></div><div><dt>Costo por registro</dt><dd>71.495<small>En Búsqueda, 13% menos que en enero</small></dd></div><div><dt>Mejor campaña</dt><dd>46.732</dd></div></dl>
 
         <div class="table-scroll">
           <table>
             <caption>Las seis correcciones. El detalle de cada una está en su propia sección.</caption>
             <thead><tr><th scope="col">Problema</th><th scope="col">Acción</th><th scope="col">Qué libera o gana</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Cinco campañas se miden con un contador que suma apuestas de clientes viejos, no clientes nuevos</th><td>Que todas persigan el registro</td><td>Hace legibles 22,3 M al mes</td></tr>
+              <tr><th scope="row">La cuenta no distingue clientes nuevos de recurrentes: tres campañas pujan por <code>purchase</code>, que cuenta cada apuesta</th><td>Separar adquisición de retención y probar «sólo clientes nuevos»</td><td>Que la adquisición se mida por clientes nuevos</td></tr>
               <tr><th scope="row">La campaña de marca gasta el 49% de su plata en búsquedas que no dicen «yajuego»</th><td>Cerrarle la salida con exclusiones y concordancia</td><td><b>32,4 M al mes</b></td></tr>
               <tr><th scope="row">La campaña de marca le muestra el anuncio más flojo al público más caliente</th><td>Llevarle el anuncio con oferta que ya usa Promociones</td><td>El registro pasaría de 4,5% a cerca de 8,3%</td></tr>
               <tr><th scope="row">Cuatro campañas compran las mismas búsquedas entre ellas</th><td>Repartir el territorio con exclusiones cruzadas</td><td>Hace comparable el 91% del gasto</td></tr>
@@ -109,14 +125,14 @@
 
         <div class="panel">
           <h3>Y una advertencia sobre algo que parece un problema y no lo es.</h3>
-          <p>Revisamos la cuenta buscando búsquedas sin valor comercial: gente pidiendo soporte, buscando jugar gratis, preguntando si el casino es confiable, pidiendo PDF o buscando empleo. La intuición dice que ahí hay plata botada. Los datos dicen que no: esas búsquedas convierten mejor que el promedio de la cuenta, y excluirlas quitaría resultado. Lo que sí sobra son 140.408 pesos al mes. El detalle está en la sección de exclusiones.</p>
+          <p><b>Revisamos la cuenta buscando búsquedas sin valor comercial</b> (soporte, jugar gratis, «es confiable», PDF, empleo). La intuición decía que ahí se perdía plata; los datos dicen lo contrario: casi todas convierten mejor que el promedio. Lo que sobra son 140.408 pesos al mes.</p>
         </div>
       </section>
 
       <section class="grupo" id="glosario">
         <div class="head">
-          <h2>Cinco términos que hacen falta para leer el resto</h2>
-          <p class="lede">Este documento evita la jerga donde puede, pero hay cinco conceptos que no tienen sinónimo. Con estos cinco se entiende todo lo demás.</p>
+          <h2>Cinco términos para leer el resto</h2>
+          <p class="lede">Con estos cinco conceptos se entiende todo el documento. Cualquier otro se explica donde aparece.</p>
         </div>
 
         <div class="duo">
@@ -126,11 +142,11 @@
           </div>
           <div class="panel">
             <h3>Concordancia</h3>
-            <p>Qué tan parecido tiene que ser lo que la persona escribe a lo que compramos. <b>Exacta</b> sólo entra si escribe casi lo mismo. <b>Frase</b> permite palabras alrededor. <b>Amplia</b> deja que Google decida por parecido de tema, y puede traer cosas muy lejanas. El 85% de esta cuenta está en amplia.</p>
+            <p>Qué tan parecido debe ser lo que la persona escribe a lo que compramos. <b>Exacta</b>: casi igual. <b>Frase</b>: con palabras alrededor. <b>Amplia</b>: Google decide por tema y puede traer cosas lejanas. El 85% de la cuenta está en amplia.</p>
           </div>
           <div class="panel">
             <h3>Cuota de impresiones</h3>
-            <p>De todas las veces que alguien buscó algo donde podíamos aparecer, en cuántas aparecimos. Si es 30%, nos perdimos siete de cada diez. Google además dice por qué: <b>por presupuesto</b> o <b>por puja</b>. Esa diferencia decide si el arreglo es mover plata o mejorar el anuncio.</p>
+            <p>De las veces que alguien buscó donde podíamos aparecer, en cuántas aparecimos. Google dice además por qué nos perdimos: <b>por presupuesto</b> o <b>por puja</b>, y cada una pide un arreglo distinto.</p>
           </div>
           <div class="panel">
             <h3>Nivel de calidad</h3>
@@ -145,52 +161,50 @@
 
       <section class="grupo" id="destino">
         <div class="head">
-          <h2>Cómo debería quedar la cuenta</h2>
-          <p class="lede">Antes del diagnóstico, el destino. Hoy las cuatro campañas de búsqueda compran de todo y se pisan entre ellas: la palabra «yajuego» la compran las cuatro al mismo tiempo. La propuesta es que cada campaña tenga un territorio cerrado, con una frontera explícita, y que adentro los anuncios le hablen a una sola intención.</p>
+          <h2>Cómo debería quedar: tres campañas y una pausada</h2>
+          <p class="lede"><b>La idea:</b> hoy las cuatro campañas de búsqueda compran lo mismo y se pisan; la propuesta es darle a cada una un territorio cerrado y un mensaje por intención.</p>
         </div>
 
         <h3>Hoy</h3>
-        <p class="note">Cuatro campañas, un solo grupo de anuncios cada una, ninguna exclusión, casi todo en concordancia amplia. Cualquiera puede capturar cualquier búsqueda.</p>
-        <div class="table-scroll">
+        <p class="note">Cuatro campañas, un grupo de anuncios cada una, cero exclusiones y casi todo en amplia. <b>Cómo leer este gráfico.</b> Cada barra es una campaña y sus colores muestran lo que la gente escribió: marca propia, competencia o genérico. Una campaña sana tendría casi un solo color; hoy todas están mezcladas.</p>
+        <figure class="figure grow">
+          <figcaption>Qué compra cada campaña, según lo que la persona escribió.</figcaption>
+          <div class="legend"><span><i class="is-accent"></i>Marca propia</span><span><i class="is-neg"></i>Competencia</span><span><i></i>Genérico</span></div>
+          <div class="bars">
+            <div class="bar-row"><div class="bar-head"><span class="name">Brand</span><span class="val">66,1 M</span></div><div class="bar-track" style="display:flex"><i style="width:51.0%;background:var(--accent-deep)"></i><i style="width:18.3%;background:var(--neg)"></i><i style="width:30.7%;background:var(--ink)"></i></div><div class="bar-foot"><span>51% marca</span><span>18% competencia</span><span>31% genérico</span></div></div>
+            <div class="bar-row"><div class="bar-head"><span class="name">Promotions</span><span class="val">54,3 M</span></div><div class="bar-track" style="display:flex"><i style="width:11.3%;background:var(--accent-deep)"></i><i style="width:23.4%;background:var(--neg)"></i><i style="width:65.3%;background:var(--ink)"></i></div><div class="bar-foot"><span>11% marca</span><span>23% competencia</span><span>65% genérico</span></div></div>
+            <div class="bar-row"><div class="bar-head"><span class="name">Betting Terms</span><span class="val">33,8 M</span></div><div class="bar-track" style="display:flex"><i style="width:11.2%;background:var(--accent-deep)"></i><i style="width:20.6%;background:var(--neg)"></i><i style="width:68.2%;background:var(--ink)"></i></div><div class="bar-foot"><span>11% marca</span><span>21% competencia</span><span>68% genérico</span></div></div>
+            <div class="bar-row"><div class="bar-head"><span class="name">Competitor</span><span class="val">19,8 M</span></div><div class="bar-track" style="display:flex"><i style="width:0.4%;background:var(--accent-deep)"></i><i style="width:85.3%;background:var(--neg)"></i><i style="width:14.3%;background:var(--ink)"></i></div><div class="bar-foot"><span>0,4% marca</span><span>85% competencia</span><span>14% genérico</span></div></div>
+          </div>
+        </figure>
+
+        <h3>Los términos de búsqueda detrás de cada porcentaje</h3>
+        <p class="note"><b>Son términos de búsqueda, no palabras clave:</b> lo que la persona escribió, no lo que la cuenta compró. Con concordancia amplia, una sola palabra clave como «casino» se activa con miles de términos, y por eso Marca compra 3.140 términos de competencia. Cómo se frena, en la <a href="#negativas">sección de concordancia y exclusiones</a>.</p>
+        <details>
+          <summary><svg class="ico ico-sm mas" aria-hidden="true"><use href="#i-mas"></use></svg><svg class="ico ico-sm menos" aria-hidden="true"><use href="#i-menos"></use></svg>Ver los términos de cada casilla (24.509 términos, 174,1 millones de pesos)</summary>
+          <p class="note"><b>La regla.</b> Se aplica en este orden: si el término nombra una casa rival o un casino de figura pública, es competencia; si no, y nombra a YaJuego o Betjuego, es marca propia; el resto es genérico.</p>
+          <div class="table-scroll">
           <table>
-            <caption>Estado actual. La columna de la derecha muestra qué termina comprando cada campaña, más allá de su nombre.</caption>
-            <thead><tr><th scope="col">Campaña</th><th scope="col">Grupos</th><th scope="col">Exclusiones</th><th scope="col">Lo que realmente compra</th></tr></thead>
+            <caption>Términos de búsqueda de cada casilla. El primero, en negrita, es el de mayor gasto.</caption>
+            <thead><tr><th scope="col">Campaña</th><th scope="col">Categoría</th><th scope="col">Gasto</th><th scope="col">% de la campaña</th><th scope="col">Términos distintos</th><th scope="col" style="text-align:left">Los seis términos de mayor gasto</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Brand</th><td>1</td><td class="is-neg"><b>0</b></td><td>51% marca, 31% genéricos, 18% competencia</td></tr>
-              <tr><th scope="row">Promotions</th><td>1</td><td class="is-neg"><b>0</b></td><td>65% genéricos, 23% competencia, 11% marca</td></tr>
-              <tr><th scope="row">Betting Terms</th><td>1</td><td class="is-neg"><b>0</b></td><td>68% genéricos, 21% competencia, 11% marca</td></tr>
-              <tr><th scope="row">Competitor</th><td>3</td><td class="is-neg"><b>0</b></td><td>85% competencia, 14% genéricos</td></tr>
+              <tr><th scope="row">Brand</th><td>Marca propia</td><td>33.694.975</td><td>51,0%</td><td>117</td><td class="terminos" style="text-align:left"><b>yajuego</b>, yajuego apuestas, ya juegos, ya juego com, yajuegos, ya juego casino</td></tr>
+              <tr><th scope="row">Brand</th><td>Competencia</td><td>12.075.034</td><td>18,3%</td><td>3.140</td><td class="terminos" style="text-align:left"><b>cossio casino</b>, bwin, triunfobet, rivalo, 1xbet, casino cossio</td></tr>
+              <tr><th scope="row">Brand</th><td>Genérico</td><td>20.344.400</td><td>30,8%</td><td>7.751</td><td class="terminos" style="text-align:left"><b>nequi casino</b>, casas de apuestas colombia, casino, juegos de casino para ganar dinero, baloto casino, apuestas</td></tr>
+              <tr><th scope="row">Promotions</th><td>Marca propia</td><td>6.159.146</td><td>11,3%</td><td>87</td><td class="terminos" style="text-align:left"><b>yajuego</b>, ya juegos, yajuego apuestas, ya juego com, yajuego bono de bienvenida, ya juego casino</td></tr>
+              <tr><th scope="row">Promotions</th><td>Competencia</td><td>12.697.967</td><td>23,4%</td><td>3.655</td><td class="terminos" style="text-align:left"><b>rushbet</b>, cossio casino, casino cossio, bwin, zamba, doradobet</td></tr>
+              <tr><th scope="row">Promotions</th><td>Genérico</td><td>35.464.263</td><td>65,3%</td><td>9.756</td><td class="terminos" style="text-align:left"><b>nequi casino</b>, casino, app para ganar dinero y retirar por nequi, casino online, juegos para ganar dinero real gratis, casas de apuestas colombia</td></tr>
+              <tr><th scope="row">Betting Terms</th><td>Marca propia</td><td>3.784.782</td><td>11,2%</td><td>92</td><td class="terminos" style="text-align:left"><b>yajuego</b>, ya juegos, yajuego apuestas, yajuego bono sin deposito, yajuegos, yajuego registro</td></tr>
+              <tr><th scope="row">Betting Terms</th><td>Competencia</td><td>6.974.171</td><td>20,6%</td><td>2.923</td><td class="terminos" style="text-align:left"><b>rushbet</b>, luis diaz casino, cossio casino, casino cossio, betsson bono de bienvenida sin deposito, win999</td></tr>
+              <tr><th scope="row">Betting Terms</th><td>Genérico</td><td>23.080.336</td><td>68,2%</td><td>8.528</td><td class="terminos" style="text-align:left"><b>apuestas deportivas</b>, casino online, bono sin deposito, casino, bono de bienvenida, casas de apuestas con bonos de bienvenida sin deposito colombia</td></tr>
+              <tr><th scope="row">Competitor</th><td>Marca propia</td><td>72.117</td><td>0,4%</td><td>7</td><td class="terminos" style="text-align:left"><b>yajuego</b>, yajuegos, bet juego, betjuego, betjuegos, descargar ya juego apk</td></tr>
+              <tr><th scope="row">Competitor</th><td>Competencia</td><td>16.874.064</td><td>85,3%</td><td>2.067</td><td class="terminos" style="text-align:left"><b>rushbet</b>, betplay, betsson, wplay, codere, bwin</td></tr>
+              <tr><th scope="row">Competitor</th><td>Genérico</td><td>2.842.507</td><td>14,4%</td><td>2.004</td><td class="terminos" style="text-align:left"><b>jugar baloto en linea</b>, baloto casino, winmax, bet builder, chicken road, betk</td></tr>
             </tbody>
           </table>
         </div>
-
-
-        <h3>Qué cuenta como marca, competencia o genérico</h3>
-        <p class="note">Los porcentajes de la tabla anterior salen de clasificar cada búsqueda del informe de términos, y la regla se aplica en este orden: si la búsqueda nombra una casa rival o un casino de figura pública, cuenta como competencia; si no, y nombra a YaJuego o Betjuego, cuenta como marca propia; todo lo demás es genérico. Se clasificaron 174,1 millones de pesos repartidos en 24.509 búsquedas distintas. La tabla muestra las seis de mayor gasto en cada casilla.</p>
-        <div class="table-scroll">
-          <table>
-            <caption>Evidencia de cada porcentaje. El primer término de cada casilla, en negrita, es el de mayor gasto.</caption>
-            <thead><tr><th scope="col">Campaña</th><th scope="col">Categoría</th><th scope="col">Gasto</th><th scope="col">% de la campaña</th><th scope="col">Búsquedas distintas</th><th scope="col">Las seis de mayor gasto</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Brand</th><td>Marca propia</td><td>33.694.975</td><td>51,0%</td><td>117</td><td class="terminos"><b>yajuego</b>, yajuego apuestas, ya juegos, ya juego com, yajuegos, ya juego casino</td></tr>
-              <tr><th scope="row">Brand</th><td>Competencia</td><td>12.075.034</td><td>18,3%</td><td>3.140</td><td class="terminos"><b>cossio casino</b>, bwin, triunfobet, rivalo, 1xbet, casino cossio</td></tr>
-              <tr><th scope="row">Brand</th><td>Genérico</td><td>20.344.400</td><td>30,8%</td><td>7.751</td><td class="terminos"><b>nequi casino</b>, casas de apuestas colombia, casino, juegos de casino para ganar dinero, baloto casino, apuestas</td></tr>
-              <tr><th scope="row">Promotions</th><td>Marca propia</td><td>6.159.146</td><td>11,3%</td><td>87</td><td class="terminos"><b>yajuego</b>, ya juegos, yajuego apuestas, ya juego com, yajuego bono de bienvenida, ya juego casino</td></tr>
-              <tr><th scope="row">Promotions</th><td>Competencia</td><td>12.697.967</td><td>23,4%</td><td>3.655</td><td class="terminos"><b>rushbet</b>, cossio casino, casino cossio, bwin, zamba, doradobet</td></tr>
-              <tr><th scope="row">Promotions</th><td>Genérico</td><td>35.464.263</td><td>65,3%</td><td>9.756</td><td class="terminos"><b>nequi casino</b>, casino, app para ganar dinero y retirar por nequi, casino online, juegos para ganar dinero real gratis, casas de apuestas colombia</td></tr>
-              <tr><th scope="row">Betting Terms</th><td>Marca propia</td><td>3.784.782</td><td>11,2%</td><td>92</td><td class="terminos"><b>yajuego</b>, ya juegos, yajuego apuestas, yajuego bono sin deposito, yajuegos, yajuego registro</td></tr>
-              <tr><th scope="row">Betting Terms</th><td>Competencia</td><td>6.974.171</td><td>20,6%</td><td>2.923</td><td class="terminos"><b>rushbet</b>, luis diaz casino, cossio casino, casino cossio, betsson bono de bienvenida sin deposito, win999</td></tr>
-              <tr><th scope="row">Betting Terms</th><td>Genérico</td><td>23.080.336</td><td>68,2%</td><td>8.528</td><td class="terminos"><b>apuestas deportivas</b>, casino online, bono sin deposito, casino, bono de bienvenida, casas de apuestas con bonos de bienvenida sin deposito colombia</td></tr>
-              <tr><th scope="row">Competitor</th><td>Marca propia</td><td>72.117</td><td>0,4%</td><td>7</td><td class="terminos"><b>yajuego</b>, yajuegos, bet juego, betjuego, betjuegos, descargar ya juego apk</td></tr>
-              <tr><th scope="row">Competitor</th><td>Competencia</td><td>16.874.064</td><td>85,3%</td><td>2.067</td><td class="terminos"><b>rushbet</b>, betplay, betsson, wplay, codere, bwin</td></tr>
-              <tr><th scope="row">Competitor</th><td>Genérico</td><td>2.842.507</td><td>14,4%</td><td>2.004</td><td class="terminos"><b>jugar baloto en linea</b>, baloto casino, winmax, bet builder, chicken road, betk</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="panel">
-          <h3>Dos decisiones de clasificación que conviene conocer.</h3>
-          <p><b>Betjuego cuenta como marca propia</b>, no como competencia: es el nombre de la propiedad de GA4 y figura como alias de la cuenta. <b>Los casinos de figura pública cuentan como competencia</b>: «cossio casino», «luis diaz casino» y similares son operadores rivales con cara conocida, no categoría genérica. Si alguna de las dos reglas no corresponde al criterio comercial, los porcentajes se recalculan en minutos, porque la clasificación se aplica sobre el informe completo y no sobre una muestra.</p>
-        </div>
+          <p class="note"><b>Dos decisiones.</b> Betjuego cuenta como marca propia: es el nombre de la propiedad de GA4. Los casinos de figura pública cuentan como competencia: son operadores rivales con cara conocida. Si alguna no corresponde al criterio comercial, los porcentajes se recalculan en minutos.</p>
+        </details>
 
         <h3>Cómo debería quedar</h3>
         <p class="note">Tres campañas con frontera, cada una con grupos por intención y su propio anuncio. La cuarta se pausa. Los presupuestos son punto de partida, no destino: se mueven por pasos verificando el costo por registro.</p>
@@ -208,8 +222,8 @@
             <h3>Promociones</h3>
             <span class="note">2,9 M al día. Se mantiene</span>
             <ol>
-              <li><div><b>Compra</b><p>Bono sin depósito, pagos por Nequi, juegos que pagan, casino en vivo y ruleta. Cinco grupos, uno por cada uno.</p></div></li>
-              <li><div><b>Excluye</b><p>La marca propia, que pasa a Marca, y las marcas de la competencia.</p></div></li>
+              <li><div><b>Compra</b><p>Bono sin depósito, pagos por Nequi, juegos que pagan, casino en vivo y ruleta. Cinco grupos, uno por cada uno. Y recoge la competencia que ya convierte bien, a 51.496.</p></div></li>
+              <li><div><b>Excluye</b><p>La marca propia, que pasa a Marca. La competencia se queda: aquí se convierte a 51.496, no a 85.095 como en Marca.</p></div></li>
               <li><div><b>Mensaje</b><p>Un anuncio por grupo, escrito sobre la oferta concreta que esa persona buscó. Hoy los cinco comparten uno solo.</p></div></li>
             </ol>
           </div>
@@ -218,7 +232,7 @@
             <span class="note">1,5 M al día. Se mantiene</span>
             <ol>
               <li><div><b>Compra</b><p>Apuestas deportivas, casas de apuestas y fútbol. Tres grupos. Es la campaña que hoy se llama Betting Terms.</p></div></li>
-              <li><div><b>Excluye</b><p>La marca propia, las promociones y las marcas de la competencia.</p></div></li>
+              <li><div><b>Excluye</b><p>La marca propia y las búsquedas promocionales, que son de Promociones. La competencia se queda: aquí se convierte a 63.604.</p></div></li>
               <li><div><b>Mensaje</b><p>Categoría más diferencial: por qué YaJuego y no cualquiera. Distinto al de promociones.</p></div></li>
             </ol>
           </div>
@@ -227,7 +241,7 @@
             <span class="note">Pausada. Hoy tiene 720 K al día</span>
             <ol>
               <li><div><b>Por qué</b><p>Paga hasta cinco veces el precio de mercado por su nivel de calidad 1, y entrega registros a 169.991 pesos.</p></div></li>
-              <li><div><b>Qué pasa con esa demanda</b><p>Las otras tres ya la capturan de forma incidental, y la convierten entre 51.496 y 85.095 pesos.</p></div></li>
+              <li><div><b>Qué pasa con esa demanda</b><p>Promociones y Genéricos ya la capturan de forma incidental, y la convierten a 51.496 y 63.604 pesos.</p></div></li>
               <li><div><b>Cuándo volvería</b><p>Sólo con anuncios y página propios que levanten el nivel de calidad. Antes de eso, no.</p></div></li>
             </ol>
           </div>
@@ -235,58 +249,107 @@
 
         <div class="panel panel-hi">
           <h3>La frontera entre campañas no existe hoy, y es lo que hace que nada sea comparable.</h3>
-          <p>Sin exclusiones, las cuatro campañas entran a la misma subasta por la misma búsqueda y Google elige una. El resultado es que el 91,3% del gasto de búsqueda cae en términos que se disputan dos o más campañas propias, cada campaña aprende con la mitad de la información, y el costo por registro de una no se puede comparar con el de otra. Poner la frontera no es orden por el orden: es la condición para que las demás decisiones tengan base.</p>
+          <p>Hoy no hay frontera: las cuatro campañas entran a la misma subasta por la misma búsqueda y Google elige una. Por eso el 91,3% del gasto se disputa entre campañas propias y ningún costo por registro es comparable con otro.</p>
         </div>
       </section>
 
       <section class="grupo" id="medicion">
         <div class="head">
-          <h2>El problema: el contador principal no cuenta clientes</h2>
-          <p class="lede">Once campañas persiguen el registro, que es lo correcto. Cinco no: tres persiguen un evento llamado <code>purchase</code>, una las suscripciones de YouTube y otra las descargas de la app. El problema está en <code>purchase</code>: está configurado para contar cada apuesta, así que una persona que apuesta ocho veces cuenta ocho. Y la mayoría de esas apuestas son de gente que ya era cliente.</p>
+          <h2>El problema: la cuenta no distingue clientes nuevos de recurrentes</h2>
+          <p class="lede"><b>La idea:</b> hay que pujar por quien todavía no hace su primer depósito (FTD), y hoy no se hace. Tres campañas pujan por <code>purchase</code> (cada apuesta de cualquiera) y once por registro, que no aparta a los recurrentes. Google tiene un modo para pujar sólo por clientes nuevos y nadie lo usa.</p>
         </div>
 
-        <div class="duo">
+        <dl class="tira-cifras"><div><dt>apuestas contadas por 100 clics en Marca</dt><dd>107</dd></div><div><dt>registros por 100 clics en Marca</dt><dd>5,2</dd></div><div><dt>campañas con «sólo clientes nuevos»</dt><dd>0 de 16</dd></div><div><dt>listas de clientes existentes</dt><dd>0</dd></div></dl>
+
+        <div class="duo duo-3">
           <div class="panel">
-            <h3>Más conversiones que clics</h3>
-            <p>La campaña Demand Gen Manifesto / Purchase registra 9.917 conversiones con 2.018 clics. Casi cinco «compras» por cada clic. Eso no es posible si cada conversión fuera una persona nueva.</p>
+            <h3>Un argumento frecuente, y lo que tiene de cierto</h3>
+            <p>«Si se deja <code>purchase</code>, se deja de apuntar a quienes ya entraron a YaJuego». Es cierto: <code>purchase</code> optimiza hacia quien ya apuesta. Sirve para retener, no para adquirir.</p>
           </div>
           <div class="panel">
-            <h3>La señal se rompió en mayo</h3>
-            <p>El conteo cayó de 281.016 a 45.624 entre mayo y septiembre sin que la inversión bajara. Un resultado de negocio no se divide entre seis en cuatro meses: eso es un problema de instalación del medidor.</p>
+            <h3>Lo que no resuelve</h3>
+            <p>Dejar sólo el registro tampoco saca a los recurrentes: siguen viendo y clicando los anuncios, sólo que no «convierten». Google, por defecto, «puja por igual por clientes nuevos y existentes».</p>
           </div>
           <div class="panel">
-            <h3>Y arrastra la lectura del año</h3>
-            <p>Sumando todo, la cuenta parece hundirse: de 130.179 conversiones en enero a 23.644 en septiembre. Es el contador roto. Mirando sólo los registros pasó lo contrario: de 1.698 a 2.859.</p>
+            <h3>Y la meta real es el FTD</h3>
+            <p>El registro es un sustituto. Hasta que el primer depósito llegue a Google Ads, es el mejor indicador; la meta es pujar por el FTD de clientes nuevos.</p>
           </div>
         </div>
 
-        <p class="note"><b>Cómo leer este gráfico.</b> Cada barra es un mes, y su largo es cuántas veces se disparó el evento <code>purchase</code>. Mayo es el mes más alto, así que su barra ocupa el ancho completo y las demás se dibujan en proporción a ella. En rojo, los meses en que el conteo ya se había desplomado.</p>
+        <h3>Qué dicen los datos de la cuenta</h3>
+        <p class="note"><b>Cómo leer este gráfico.</b> Cada campaña tiene dos barras: apuestas por cada 100 clics (oscura) y registros por cada 100 clics (amarilla). Muchas apuestas y pocos registros indican clics de gente que ya tiene cuenta. Competitor, que busca gente nueva, es la contraprueba.</p>
         <figure class="figure grow">
-          <figcaption>El evento <code>purchase</code>, mes a mes, durante 2026.</figcaption>
-          <div class="bars">
-            <div class="bar-row"><div class="bar-head"><span class="name">Enero</span><span class="val">141.941</span></div><div class="bar-track"><i style="width:50.5%"></i></div></div>
-            <div class="bar-row"><div class="bar-head"><span class="name">Febrero</span><span class="val">129.274</span></div><div class="bar-track"><i style="width:46.0%"></i></div></div>
-            <div class="bar-row"><div class="bar-head"><span class="name">Marzo</span><span class="val">179.365</span></div><div class="bar-track"><i style="width:63.8%"></i></div></div>
-            <div class="bar-row"><div class="bar-head"><span class="name">Abril</span><span class="val">171.203</span></div><div class="bar-track"><i style="width:60.9%"></i></div></div>
-            <div class="bar-row"><div class="bar-head"><span class="name">Mayo</span><span class="val">281.016</span></div><div class="bar-track"><i style="width:100%"></i></div></div>
-            <div class="bar-row"><div class="bar-head"><span class="name">Junio</span><span class="val">200.047</span></div><div class="bar-track"><i style="width:71.2%"></i></div></div>
-            <div class="bar-row"><div class="bar-head"><span class="name">Julio</span><span class="val">161.463</span></div><div class="bar-track"><i style="width:57.5%"></i></div></div>
-            <div class="bar-row"><div class="bar-head"><span class="name">Agosto</span><span class="val">97.829</span></div><div class="bar-track"><i class="is-over" style="width:34.8%"></i></div></div>
-            <div class="bar-row"><div class="bar-head"><span class="name">Septiembre</span><span class="val">45.624</span></div><div class="bar-track"><i class="is-over" style="width:16.2%"></i></div></div>
+          <figcaption>Apuestas contadas y registros por cada 100 clics, en los últimos 30 días.</figcaption>
+          <div class="legend">
+            <span><i></i>Apuestas (<code>purchase</code>) por 100 clics</span>
+            <span><i class="is-accent"></i>Registros por 100 clics</span>
           </div>
-          <p class="chart-foot">Tres campañas, con 19,7 millones al mes, siguen tomando decisiones de puja contra esta serie.</p>
+          <div class="share">
+            <div class="share-row"><span>Brand</span><div class="share-bar"><i style="width:97.2%"></i></div><b>106,9</b></div>
+            <div class="share-row is-accent"><span></span><div class="share-bar"><i style="width:4.7%"></i></div><b>5,2</b></div>
+            <div class="share-row"><span>Betting Terms</span><div class="share-bar"><i style="width:39.2%"></i></div><b>43,1</b></div>
+            <div class="share-row is-accent"><span></span><div class="share-bar"><i style="width:7.2%"></i></div><b>7,9</b></div>
+            <div class="share-row"><span>Promotions</span><div class="share-bar"><i style="width:22.6%"></i></div><b>24,9</b></div>
+            <div class="share-row is-accent"><span></span><div class="share-bar"><i style="width:10.0%"></i></div><b>11,0</b></div>
+            <div class="share-row"><span>Competitor</span><div class="share-bar"><i style="width:1.6%"></i></div><b>1,8</b></div>
+            <div class="share-row is-accent"><span></span><div class="share-bar"><i style="width:5.2%"></i></div><b>5,7</b></div>
+          </div>
+          <p class="chart-foot">Es un indicio, no una prueba: una persona nueva también apuesta varias veces tras registrarse. Pero 20 apuestas por registro en Marca no se explican sólo con clientes nuevos.</p>
         </figure>
 
+        <div class="panel">
+          <h3>Los recurrentes no llegan por «iniciar sesión»</h3>
+          <p>Las búsquedas de cliente existente que nombran la marca (iniciar sesión, retirar, verificar) suman sólo 67.033 pesos al mes, el 0,04%. Lo más probable es que lleguen buscando «yajuego» a secas. Por eso excluir términos no basta: hay que decirle a Google quiénes son.</p>
+        </div>
+
+        <h3>Lo que ofrece Google Ads: pujar sólo por clientes nuevos</h3>
+        <p class="note">Existe en Búsqueda, Performance Max y Demand Gen. Las citas son traducción libre de la documentación de Google.</p>
+        <div class="table-scroll">
+          <table>
+            <caption>Los tres comportamientos posibles y dónde está la cuenta.</caption>
+            <thead><tr><th scope="col">Modo</th><th scope="col" style="text-align:left">Qué hace</th><th scope="col" style="text-align:left">Cuándo conviene</th><th scope="col">Campañas</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Sin objetivo</th><td style="text-align:left">«Por defecto, tu campaña puja por igual por clientes nuevos y existentes»</td><td style="text-align:left">Cuando el tipo de cliente no importa</td><td class="is-neg"><b>16 de 16</b></td></tr>
+              <tr><th scope="row">Pujar más por nuevos</th><td style="text-align:left">Llega a todos, pero puja más por los nuevos</td><td style="text-align:left">Adquirir sin perder ventas de recurrentes</td><td>0 de 16</td></tr>
+              <tr><th scope="row">Pujar sólo por nuevos</th><td style="text-align:left">«Optimizadas para pujar exclusivamente por clientes nuevos»</td><td style="text-align:left">Presupuestos estrictos de adquisición, o metas que no son compra, como registros</td><td>0 de 16</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="duo duo-3">
+          <div class="panel">
+            <h3>Pide una lista de clientes</h3>
+            <p>Acepta Customer Match (carga directa, CRM o API), audiencias de Analytics y listas de visitantes o de la app. Mínimo 100 miembros activos; con menos de 1.000 puede rendir peor.</p>
+          </div>
+          <div class="panel">
+            <h3>Reduce, no elimina</h3>
+            <p>Google también detecta clientes por su cuenta (hasta 540 días), pero admite que es «menos completa porque los usuarios pueden borrar cookies y desactivar el seguimiento».</p>
+          </div>
+          <div class="panel">
+            <h3>Los recurrentes, aparte</h3>
+            <p>Google recomienda «una campaña aparte para llegar a clientes existentes» al usar este modo. Ahí encajan Manifesto / Purchase y Bono #Purchase, si su papel es retener.</p>
+          </div>
+        </div>
+        <p class="note"><b>Estado de la cuenta, según la API.</b> Ninguna campaña tiene objetivo de adquisición. Hay cuatro listas de audiencia, ninguna de clientes, todas con tamaño reportado 0: puede ser por listas cerradas o sin poblar, y conviene confirmarlo en la interfaz.</p>
+        <p class="note">Fuentes, en inglés: <a href="https://support.google.com/google-ads/answer/12080169" target="_blank" rel="noopener">objetivos de ciclo de vida</a>, <a href="https://support.google.com/google-ads/answer/14005876" target="_blank" rel="noopener">detección de segmentos</a>, <a href="https://support.google.com/google-ads/answer/14007601" target="_blank" rel="noopener">listas de clientes</a>, <a href="https://support.google.com/google-ads/answer/15864743" target="_blank" rel="noopener">preferencias de puja</a> y <a href="https://developers.google.com/google-ads/api/docs/conversions/goals/lifecycle-goals" target="_blank" rel="noopener">la API</a>.</p>
+
+        <h3>Cómo quedaría: dos papeles</h3>
+        <p class="note"><b>Cómo leer este diagrama.</b> Cada fila es un papel y se lee de izquierda a derecha: qué campañas son, por qué evento pujan, a quién le hablan y cómo se miden. Los recuadros con borde amarillo son lo nuevo: decirle a Google a quién se le puja.</p>
+        <div class="table-scroll"><svg viewBox="0 0 980 250" role="img" aria-label="Dos papeles. Adquisición: puja por registro hoy y FTD después, sólo por clientes nuevos, medida por costo por registro. Retención: puja por purchase, para clientes existentes, medida aparte." style="width:100%;min-width:720px;height:auto;font-family:inherit"><defs><marker id="ahB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-muted)"/></marker></defs><rect x="10" y="14" width="210" height="90" rx="10" style="fill:var(--sunken);stroke:var(--rule-strong);stroke-width:1.5"/><text x="115.0" y="44" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">Adquisición</text><text x="115.0" y="68" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">Marca, Promociones,</text><text x="115.0" y="87" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">Genéricos</text><rect x="260" y="14" width="210" height="90" rx="10" style="fill:var(--sunken);stroke:var(--rule-strong);stroke-width:1.5"/><text x="365.0" y="44" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">Puja por</text><text x="365.0" y="68" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">registro hoy,</text><text x="365.0" y="87" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">FTD después</text><rect x="510" y="14" width="210" height="90" rx="10" style="fill:var(--paper);stroke:var(--accent-deep);stroke-width:3"/><text x="615.0" y="44" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">A quién</text><text x="615.0" y="68" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">sólo clientes nuevos</text><text x="615.0" y="87" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">(modo de Google)</text><rect x="760" y="14" width="210" height="90" rx="10" style="fill:var(--sunken);stroke:var(--rule-strong);stroke-width:1.5"/><text x="865.0" y="44" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">Se mide por</text><text x="865.0" y="68" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">costo por registro</text><text x="865.0" y="87" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">y luego por FTD</text><line x1="224" y1="59.0" x2="256" y2="59.0" style="stroke:var(--ink-muted);stroke-width:2" marker-end="url(#ahB)"/><line x1="474" y1="59.0" x2="506" y2="59.0" style="stroke:var(--ink-muted);stroke-width:2" marker-end="url(#ahB)"/><line x1="724" y1="59.0" x2="756" y2="59.0" style="stroke:var(--ink-muted);stroke-width:2" marker-end="url(#ahB)"/><rect x="10" y="136" width="210" height="90" rx="10" style="fill:var(--sunken);stroke:var(--rule-strong);stroke-width:1.5"/><text x="115.0" y="166" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">Retención</text><text x="115.0" y="190" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">Las campañas de</text><text x="115.0" y="209" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">purchase, si lo son</text><rect x="260" y="136" width="210" height="90" rx="10" style="fill:var(--sunken);stroke:var(--rule-strong);stroke-width:1.5"/><text x="365.0" y="166" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">Puja por</text><text x="365.0" y="190" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">purchase</text><text x="365.0" y="209" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">(apuestas)</text><rect x="510" y="136" width="210" height="90" rx="10" style="fill:var(--paper);stroke:var(--accent-deep);stroke-width:3"/><text x="615.0" y="166" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">A quién</text><text x="615.0" y="190" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">clientes existentes</text><text x="615.0" y="209" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">(con la lista)</text><rect x="760" y="136" width="210" height="90" rx="10" style="fill:var(--sunken);stroke:var(--rule-strong);stroke-width:1.5"/><text x="865.0" y="166" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">Se mide</text><text x="865.0" y="190" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">aparte, sin sumar al</text><text x="865.0" y="209" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">costo por registro</text><line x1="224" y1="181.0" x2="256" y2="181.0" style="stroke:var(--ink-muted);stroke-width:2" marker-end="url(#ahB)"/><line x1="474" y1="181.0" x2="506" y2="181.0" style="stroke:var(--ink-muted);stroke-width:2" marker-end="url(#ahB)"/><line x1="724" y1="181.0" x2="756" y2="181.0" style="stroke:var(--ink-muted);stroke-width:2" marker-end="url(#ahB)"/></svg></div>
+
         <div class="panel panel-hi">
-          <h3>La acción: que las dieciséis campañas persigan el registro.</h3>
-          <p>Cambiar la meta de conversión en las tres campañas que hoy persiguen <code>purchase</code>, y decidir si YouTube y App entran al mismo indicador o se reportan aparte con su propio objetivo. En paralelo, bajar <code>purchase</code> de «cuenta cada apuesta» a «cuenta una por persona» y abrir revisión con el equipo de medición por la caída de mayo. Hasta que eso pase, ninguna decisión debería apoyarse en la columna de conversiones agregada. <b>Cómo se verifica:</b> que esas tres campañas vuelvan a reportar un costo por registro de seis cifras y no de tres.</p>
+          <h3>La acción: separar adquisición de retención, y que la adquisición puje sólo por clientes nuevos.</h3>
+        </div>
+        <div class="rules">
+          <div class="rule-col is-yes"><h3>Qué se hace</h3><ol><li><p>Definir el papel de cada campaña: adquisición (registro hoy, FTD después) o retención (<code>purchase</code>).</p></li><li><p>Armar la lista de clientes existentes con el CRM o una audiencia de GA4 de quienes ya depositaron.</p></li><li><p>Probar «sólo clientes nuevos» en una sola campaña de adquisición, Marca, y comparar a 14 días.</p></li><li><p>Con la información comercial, traer el FTD como conversión y pujar por FTD de clientes nuevos.</p></li></ol></div>
+          <div class="rule-col"><h3>Cómo se verifica y qué cuidar</h3><p style="margin-top:22px;color:var(--ink-secondary);font-size:.9rem;line-height:1.5">Las apuestas por 100 clics de la campaña de prueba bajan y los registros por 100 clics suben.</p><p style="margin-top:22px;color:var(--ink-secondary);font-size:.9rem;line-height:1.5">Google lo da por compatible con Búsqueda y con metas que no son compra, pero no se ha probado en esta cuenta: por eso se prueba en una campaña antes de extenderlo.</p></div>
         </div>
       </section>
 
       <section class="grupo" id="reparto">
         <div class="head">
-          <h2>El problema: el 17% del presupuesto produce el 6% de los registros</h2>
-          <p class="lede">Puestas todas las campañas contra el mismo indicador, el reparto deja de ser opinable. Promociones y las Performance Max de promoción traen registros entre 46.000 y 51.000 pesos. Demand Gen, YouTube, App y Competencia suman 46,9 millones al mes y entregan 213 registros entre las seis.</p>
+          <h2>El problema: el 17% del presupuesto trae el 6% de los registros</h2>
+          <p class="lede"><b>La idea:</b> el presupuesto está donde menos rinde. Promociones y las Performance Max de promoción traen registros entre 46.000 y 51.000 pesos; Demand Gen, YouTube, App y Competencia suman 46,9 millones al mes y entregan 213 registros entre las seis.</p>
         </div>
 
         <p class="note"><b>Cómo leer este gráfico.</b> Cada campaña tiene dos barras. La oscura es qué porcentaje del presupuesto se lleva; la amarilla, qué porcentaje de los registros devuelve. Si la amarilla es más larga que la oscura, esa campaña rinde por encima de lo que cuesta. Si es más corta, rinde por debajo.</p>
@@ -330,7 +393,9 @@
           <p class="chart-foot">Demand Gen aparece agregada porque por separado deja de ser legible: Manifesto / Purchase invirtió 7,5 millones y produjo un registro.</p>
         </figure>
 
-        <div class="table-scroll">
+        <details>
+          <summary><svg class="ico ico-sm mas" aria-hidden="true"><use href="#i-mas"></use></svg><svg class="ico ico-sm menos" aria-hidden="true"><use href="#i-menos"></use></svg>Ver las 16 campañas, con su costo por registro</summary>
+          <div class="table-scroll">
           <table data-ordenable>
             <caption>Las dieciséis campañas con inversión. Se puede ordenar por cualquier columna; un tercer clic vuelve al orden original.</caption>
             <thead><tr><th scope="col">Campaña</th><th scope="col">Inversión</th><th scope="col">Registros</th><th scope="col">Costo por registro</th></tr></thead>
@@ -354,17 +419,21 @@
             </tbody>
           </table>
         </div>
+        </details>
 
         <div class="panel panel-hi">
-          <h3>La acción: mover la plata desde donde no compra registros hacia donde se está agotando.</h3>
-          <p>Las campañas más baratas de la cuenta están limitadas por presupuesto: PMax Bono Activa tu Suerte se queda sin plata en el 87,7% de las subastas a las que podría entrar, y PMax Juégala Toda en el 42,7%, ambas con los mejores costos de la cuenta. Subirles el presupuesto un 30% por semana, financiado con lo que se libera de Competencia. <b>Ojo con Promociones:</b> no hay que subirle nada, porque ni siquiera gasta lo que ya tiene asignado. <b>Cómo se verifica:</b> que el costo por registro se mantenga bajo 55.000 en cada paso; si sube, se devuelve el paso anterior.</p>
+          <h3>La acción: mover la plata de donde no compra registros a donde se está agotando.</h3>
+        </div>
+        <div class="rules">
+          <div class="rule-col is-yes"><h3>Qué se hace</h3><ol><li><p>Subir 30% por semana PMax Bono Activa tu Suerte (sin presupuesto en el 87,7% de sus subastas) y PMax Juégala Toda (42,7%), con lo que libere Competitor.</p></li><li><p>No subirle nada a Promociones: ni gasta lo que ya tiene.</p></li></ol></div>
+          <div class="rule-col"><h3>Cómo se verifica</h3><p style="margin-top:22px;color:var(--ink-secondary);font-size:.9rem;line-height:1.5">El costo por registro se mantiene bajo 55.000 en cada paso; si sube, se devuelve el paso.</p></div>
         </div>
       </section>
 
       <section class="grupo" id="marca">
         <div class="head">
-          <h2>El problema: la campaña de marca paga el doble por la misma búsqueda</h2>
-          <p class="lede">La palabra «yajuego» se lleva 32,9 millones al mes, el 18,9% de toda la inversión en búsqueda, y la compran cuatro campañas a la vez. Como es la misma palabra, el mismo mes y la misma cuenta, se puede comparar directamente cuál la compra mejor. La diferencia es de dos a uno, y no es por el precio del clic.</p>
+          <h2>El problema: Marca paga el doble por «yajuego»</h2>
+          <p class="lede"><b>La idea:</b> la misma búsqueda cuesta 85.959 pesos por registro en Marca y 41.661 en Promociones, y la mitad del presupuesto de Marca se va en búsquedas que no la nombran. «yajuego» se lleva 32,9 millones al mes y la compran cuatro campañas a la vez.</p>
         </div>
 
         <div class="table-scroll">
@@ -380,9 +449,33 @@
         </div>
 
         <div class="panel">
-          <h3>El clic cuesta casi lo mismo. Lo que cambia es lo que dice el anuncio.</h3>
-          <p>Entre 2.819 y 3.889 pesos por clic en las tres. Lo que cambia es cuántos se registran: 8,3% en Promociones contra 4,5% en Marca. La persona que busca «yajuego» y ve una oferta concreta se registra al doble de ritmo que la que ve un anuncio institucional. Se repite en «yajuego apuestas»: 14,2% contra 6,3%. Y hay una segunda prueba de que el mérito es del anuncio y no de a quién le habla: Promociones convierte parejo todo lo que toca, sin importar qué buscó la persona. 38.291 pesos en búsquedas de marca, 47.509 en promocionales, 48.358 en genéricos y 51.496 en búsquedas de la competencia. Cuatro públicos muy distintos, un rango de costo estrecho.</p>
+          <h3>El clic cuesta casi lo mismo. Cambia lo que ocurre después.</h3>
+          <p>Entre 2.819 y 3.889 pesos por clic en las tres. Cambia cuántos se registran: 8,3% en Promociones contra 4,5% en Marca (y 14,2% contra 6,3% en «yajuego apuestas»). Lo más probable es que sea el anuncio y la página de destino; por eso la acción es una prueba a catorce días.</p>
         </div>
+
+        <p class="note"><b>Cómo leer este gráfico.</b> Cada fila es una campaña y su barra va del costo por registro más bajo al más alto que tuvo según el tipo de búsqueda (marca, competencia o genérico). Una barra corta significa que lo que la persona escribió casi no cambia el costo.</p>
+        <figure class="figure grow">
+          <figcaption>Costo por registro según el tipo de búsqueda, dentro de cada campaña.</figcaption>
+          <div class="axis"><span>0</span><span>100.000 pesos por registro</span></div>
+          <div class="ranges">
+            <div>
+              <div class="range-head"><span class="name">Promotions</span><span class="span">38.445 a 51.496</span></div>
+              <div class="range-track"><span class="range-fill" style="left:38.4%;width:13.1%"></span></div>
+              <div class="range-foot"><span>Marca 38.445 · Promocional 46.718 · Genérico 49.560 · Competencia 51.496</span></div>
+            </div>
+            <div>
+              <div class="range-head"><span class="name">Betting Terms</span><span class="span">57.494 a 63.604</span></div>
+              <div class="range-track"><span class="range-fill" style="left:57.5%;width:6.1%"></span></div>
+              <div class="range-foot"><span>Genérico 57.494 · Marca 59.463 · Competencia 63.604</span></div>
+            </div>
+            <div>
+              <div class="range-head"><span class="name">Brand</span><span class="span">85.095 a 90.625</span></div>
+              <div class="range-track"><span class="range-fill" style="left:85.1%;width:5.5%"></span></div>
+              <div class="range-foot"><span>Competencia 85.095 · Marca 85.433 · Genérico 90.625</span></div>
+            </div>
+          </div>
+          <p class="chart-foot">Dentro de cada campaña la barra es corta: qué escribió la persona casi no cambia el costo. Entre campañas la diferencia es del doble. Lo que fija el costo es la campaña, es decir, el anuncio y la página, no la búsqueda.</p>
+        </figure>
 
         <p class="note"><b>Cómo leer este gráfico.</b> Muestra en qué gasta la campaña de marca, según lo que la persona escribió de verdad. La primera barra es lo que sí nombra a YaJuego. Las dos en rojo son búsquedas que una campaña de marca no debería estar comprando.</p>
         <figure class="figure grow">
@@ -408,20 +501,55 @@
         </figure>
 
         <div class="panel panel-hi">
-          <h3>La acción: llevarle el anuncio de Promociones y cerrarle la salida.</h3>
-          <p>Dos movimientos en la misma campaña. Primero, duplicar dentro de Marca los anuncios que Promociones ya tiene validados, dejando los actuales activos para poder comparar a catorce días. No cuesta un peso y es el cambio de mayor retorno de la lista. Segundo, pasar de amplia a frase las variantes de marca y ponerle exclusiones de competencia y genéricos, que libera 32,4 millones al mes dentro de la propia campaña. Hoy Brand se queda sin presupuesto en el 27,8% de las subastas de su propio nombre mientras paga por el de otros. <b>Cómo se verifica:</b> que la tasa de registro sobre «yajuego» suba del 4,5% y que el gasto fuera de marca baje del 49% a menos del 10%.</p>
+          <h3>La acción: llevarle a Marca el anuncio de Promociones y cerrarle la salida.</h3>
+        </div>
+        <div class="rules">
+          <div class="rule-col is-yes"><h3>Qué se hace</h3><ol><li><p>Duplicar en Marca los anuncios validados de Promociones, dejando los actuales para comparar. No cuesta inversión.</p></li><li><p>Pasar las variantes de marca de amplia a frase y excluir competencia y genéricos: libera 32,4 millones al mes dentro de la campaña.</p></li></ol></div>
+          <div class="rule-col"><h3>Cómo se verifica</h3><p style="margin-top:22px;color:var(--ink-secondary);font-size:.9rem;line-height:1.5">A 14 días, la tasa de registro sobre «yajuego» sube del 4,5% y el gasto fuera de marca baja del 49% a menos del 10%.</p></div>
         </div>
       </section>
 
       <section class="grupo" id="negativas">
         <div class="head">
-          <h2>El problema: no hay ni una sola exclusión, pero la lista obvia no es la correcta</h2>
-          <p class="lede">La cuenta no tiene ninguna palabra clave negativa. Ni listas compartidas, ni por campaña, ni por grupo. Con el 85% del gasto en concordancia amplia, nada impide que cualquier campaña se lleve cualquier búsqueda. La reacción natural es armar una lista de temas sin valor comercial. Lo revisamos término por término, y los datos dicen que esa lista quitaría resultado.</p>
+          <h2>El problema: nada limita lo que compra la cuenta</h2>
+          <p class="lede"><b>La idea:</b> hay dos controles y la cuenta no usa ninguno. La concordancia decide qué búsquedas pueden activar una palabra clave; las exclusiones, cuáles no. Y la lista temática que parece obvia (gratis, soporte, «es confiable») no es la correcta: convierte mejor que el promedio.</p>
         </div>
 
-        <p class="note"><b>Cómo leer este gráfico.</b> Cada barra es un tema que uno esperaría excluir, y su largo es cuánto cuesta un registro en ese tema. La línea vertical es el promedio de la cuenta, 71.495 pesos: todo lo que quede más corto que esa línea convierte <b>mejor</b> que el promedio, y excluirlo sería un error. En rojo, el único tema que no produce ningún registro.</p>
+        <h3>Los dos controles</h3>
+        <p class="note"><b>Cómo leer este diagrama.</b> Una búsqueda pasa por dos puertas antes de convertirse en un clic pagado. Los recuadros con borde amarillo son los controles, y debajo de cada uno, cómo está la cuenta hoy.</p>
+        <div class="table-scroll"><svg viewBox="0 0 980 175" role="img" aria-label="Camino de una búsqueda: la persona escribe, la concordancia decide si activa la palabra clave, las exclusiones deciden si se prohíbe y, si pasa, se compra el clic." style="width:100%;min-width:720px;height:auto;font-family:inherit"><defs><marker id="ahA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-muted)"/></marker></defs><rect x="10" y="36" width="210" height="90" rx="10" style="fill:var(--sunken);stroke:var(--rule-strong);stroke-width:1.5"/><text x="115.0" y="66" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">La persona escribe</text><text x="115.0" y="90" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">«casino cossio»</text><text x="115.0" y="109" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">(término de búsqueda)</text><rect x="260" y="36" width="210" height="90" rx="10" style="fill:var(--paper);stroke:var(--accent-deep);stroke-width:3"/><text x="365.0" y="26" text-anchor="middle" style="fill:var(--ink-muted);font-size:11px;font-weight:700;letter-spacing:.08em">CONTROL 1</text><text x="365.0" y="66" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">Concordancia</text><text x="365.0" y="90" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">¿Puede activar</text><text x="365.0" y="109" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">la palabra clave?</text><rect x="510" y="36" width="210" height="90" rx="10" style="fill:var(--paper);stroke:var(--accent-deep);stroke-width:3"/><text x="615.0" y="26" text-anchor="middle" style="fill:var(--ink-muted);font-size:11px;font-weight:700;letter-spacing:.08em">CONTROL 2</text><text x="615.0" y="66" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">Exclusiones</text><text x="615.0" y="90" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">¿Está prohibida</text><text x="615.0" y="109" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">para esta campaña?</text><rect x="760" y="36" width="210" height="90" rx="10" style="fill:var(--sunken);stroke:var(--rule-strong);stroke-width:1.5"/><text x="865.0" y="66" text-anchor="middle" style="fill:var(--ink);font-size:15px;font-weight:700">Se compra el clic</text><text x="865.0" y="90" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">Se muestra el anuncio</text><text x="865.0" y="109" text-anchor="middle" style="fill:var(--ink-secondary);font-size:13px">y se paga</text><line x1="224" y1="81.0" x2="256" y2="81.0" style="stroke:var(--ink-muted);stroke-width:2" marker-end="url(#ahA)"/><line x1="474" y1="81.0" x2="506" y2="81.0" style="stroke:var(--ink-muted);stroke-width:2" marker-end="url(#ahA)"/><line x1="724" y1="81.0" x2="756" y2="81.0" style="stroke:var(--ink-muted);stroke-width:2" marker-end="url(#ahA)"/><text x="365.0" y="154" text-anchor="middle" style="fill:var(--neg);font-size:13px;font-weight:700">Hoy: 612 de 617 en amplia</text><text x="615.0" y="154" text-anchor="middle" style="fill:var(--neg);font-size:13px;font-weight:700">Hoy: 0 exclusiones</text></svg></div>
+        <div class="duo duo-3">
+          <div class="panel">
+            <h3>Concordancia</h3>
+            <p>Con amplia, «casino» se activa con miles de búsquedas distintas. 612 de las 617 palabras clave están en amplia. En marca, la proyección de Google da 601 clics en exacta y 2.548 en amplia: los clics de más no son más gente buscando YaJuego.</p>
+          </div>
+          <div class="panel">
+            <h3>Exclusiones</h3>
+            <p>Le dicen a Google que, aunque una búsqueda se parezca, no muestre el anuncio. La cuenta tiene cero. Sin ellas, ni la concordancia más estricta evita que Marca compre competencia.</p>
+          </div>
+          <div class="panel">
+            <h3>Hay que ser más incisivos</h3>
+            <p>Marca en exacta y frase; amplia sólo en pruebas con presupuesto acotado; y listas de exclusión cruzadas entre campañas. La tabla asigna a cada flujo su control.</p>
+          </div>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <caption>Qué entra hoy por la puerta equivocada, cuánto cuesta y qué lo frena. Gasto en pesos al mes.</caption>
+            <thead><tr><th scope="col">Lo que entra hoy</th><th scope="col">Términos distintos</th><th scope="col">Gasto</th><th scope="col" style="text-align:left">Qué lo frena</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Competencia dentro de Marca</th><td>3.140</td><td>12.075.034</td><td style="text-align:left;text-align:left">Frase en marca, y exclusión de competencia en Marca</td></tr>
+              <tr><th scope="row">Genéricos dentro de Marca</th><td>7.751</td><td>20.344.400</td><td style="text-align:left;text-align:left">Frase en marca, y exclusión de genéricos en Marca</td></tr>
+              <tr><th scope="row">Marca propia dentro de Promociones y Genéricos</th><td>87 y 92</td><td>9.943.928</td><td style="text-align:left;text-align:left">Exclusión de marca propia en esas dos campañas</td></tr>
+              <tr><th scope="row">Genéricos dentro de Competitor</th><td>2.004</td><td>2.842.507</td><td style="text-align:left;text-align:left">Pausar la campaña</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>La lista que parecía obvia</h3>
+        <p class="note"><b>Cómo leer este gráfico.</b> Cada barra es un tema que parecía desperdicio y su largo es lo que cuesta un registro en él. La línea vertical es el promedio de la cuenta (71.495): lo que quede a su izquierda convierte mejor y excluirlo sería un error. En rojo, el único tema sin registros.</p>
         <figure class="figure grow">
-          <figcaption>Los temas que parecían desperdicio, medidos por lo que cuesta un registro en cada uno.</figcaption>
+          <figcaption>Costo por registro en cada tema que parecía desperdicio.</figcaption>
           <div class="bars">
             <div class="bar-row">
               <div class="bar-head"><span class="name">Jugar gratis, sin dinero, demo</span><span class="val">49.866</span></div>
@@ -449,42 +577,45 @@
               <div class="bar-foot"><span>140.408 al mes</span><span>0 registros</span></div>
             </div>
           </div>
-          <p class="chart-foot">Cuatro de los cinco temas quedan a la izquierda de la línea, es decir, convierten mejor que el promedio de la cuenta.</p>
+          <p class="chart-foot">Cuatro de los cinco temas quedan a la izquierda de la línea: convierten mejor que el promedio.</p>
         </figure>
 
-        <div class="duo">
+        <div class="duo duo-3">
           <div class="panel">
             <h3>«Es confiable» no es una queja</h3>
-            <p>«nequi casino es legal», «cossio casino es real», «yajuego es confiable». No es alguien con un problema: es alguien a punto de registrarse verificando que no lo estafen. Son 2,6 millones al mes que convierten a 63.058 pesos, mejor que el promedio. Excluirlas sería cortar el último paso antes del registro.</p>
+            <p>«nequi casino es legal», «yajuego es confiable»: es alguien verificando antes de registrarse. 2,6 millones al mes a 63.058 por registro, mejor que el promedio.</p>
           </div>
           <div class="panel">
-            <h3>«Gratis» casi nunca significa gratis</h3>
-            <p>Las búsquedas reales son «juegos gratis para ganar dinero real» y «juegos gratis que pagan dinero real». La palabra se refiere a no pagar por entrar, no a no depositar. Es el tema que mejor convierte de los cinco, a 49.866 pesos. Excluir la palabra «gratis» en bloque sería el peor cambio posible.</p>
+            <h3>«Gratis» casi nunca es gratis</h3>
+            <p>Las búsquedas reales son «juegos gratis para ganar dinero real»: gratis para entrar, no para depositar. Es el tema que mejor convierte (49.866). Excluir «gratis» en bloque sería el peor cambio.</p>
           </div>
           <div class="panel">
-            <h3>Lo que sí sobra son 140.408 pesos</h3>
-            <p>Treinta y un términos sin un solo registro: «trucos para jugar en casinos», «hack mines 1win», «donde ver cali vs santa fe femenino», «términos y condiciones bono yajuego», «software para predecir resultados», y once búsquedas de gente intentando recuperar su cuenta de otra casa. Vale aplicarlo, pero es el 0,08% del gasto: es higiene, no es una palanca.</p>
+            <h3>Lo que sí sobra: 140.408 pesos</h3>
+            <p>31 términos sin un registro: «trucos para jugar en casinos», «hack mines 1win», «donde ver cali vs santa fe femenino», «términos y condiciones bono yajuego». Es el 0,08% del gasto: higiene, no palanca.</p>
           </div>
         </div>
 
         <div class="panel">
-          <h3>Y hay una quinta parte del gasto que no se puede auditar así.</h3>
-          <p>Las campañas de búsqueda gastan 218,6 millones al mes, pero el informe de términos sólo muestra 174,1. Los otros 44,5 millones, el 20,4%, quedan bajo el umbral con que Google reporta: son búsquedas tan poco frecuentes que no las lista una por una. Ninguna lista de exclusiones puede tocarlas. Es el argumento definitivo a favor de arreglar la estructura en vez de perseguir términos.</p>
+          <h3>Una quinta parte del gasto no se puede auditar así</h3>
+          <p>Las campañas de búsqueda gastan 218,6 millones al mes y el informe de términos muestra 174,1. Los otros 44,5 millones (20,4%) quedan bajo el umbral de reporte de Google, y ninguna exclusión los toca. Por eso se arregla la estructura, no los términos.</p>
         </div>
 
         <div class="panel panel-hi">
-          <h3>La acción: exclusiones cruzadas entre campañas, no una lista temática.</h3>
-          <p>La palanca real no es cortar temas sino poner fronteras. Crear cuatro listas de exclusión compartidas, una por territorio, y atarlas cruzadas: la marca sólo entra en Marca, las promociones sólo en Promociones, los genéricos sólo en Genéricos, la competencia en ninguna. Eso ordena el 91,3% del gasto que hoy se disputan varias campañas. Aparte, y como higiene, aplicar la lista corta de 31 términos sin valor. <b>Cómo se verifica:</b> que el gasto en búsquedas disputadas baje del 91,3% a menos del 30% en el informe del mes siguiente.</p>
+          <h3>La acción: concordancia estricta en marca y exclusiones cruzadas, no una lista temática.</h3>
+        </div>
+        <div class="rules">
+          <div class="rule-col is-yes"><h3>Qué se hace</h3><ol><li><p>Pasar la marca a exacta y frase; la amplia, sólo en pruebas con presupuesto acotado.</p></li><li><p>Crear cuatro listas de exclusión compartidas y cruzarlas: marca propia fuera de Promociones y Genéricos; genéricos fuera de Marca; promocionales fuera de Genéricos.</p></li><li><p>Sacar la competencia de Marca, donde convierte a 85.095; se queda en Promociones y Genéricos (51.496 y 63.604).</p></li><li><p>Aplicar la lista corta de 31 términos sin valor, como higiene.</p></li></ol></div>
+          <div class="rule-col"><h3>Cómo se verifica</h3><p style="margin-top:22px;color:var(--ink-secondary);font-size:.9rem;line-height:1.5">El gasto en búsquedas disputadas baja del 91,3% a menos del 30% en el informe del mes siguiente.</p></div>
         </div>
       </section>
 
       <section class="grupo" id="competencia">
         <div class="head">
-          <h2>El problema: la campaña de competencia paga cinco veces el precio de mercado</h2>
-          <p class="lede">Competitor invierte 21,7 millones al mes y trae 142 registros, a 152.963 pesos cada uno. La causa está en el nivel de calidad: sus palabras clave principales tienen 1 sobre 10, sus anuncios están calificados como pobres, y sólo aparece en el 10% de las subastas. Nota baja significa recargo en cada clic, y aquí el recargo es visible.</p>
+          <h2>El problema: Competencia paga 5 veces el precio de mercado</h2>
+          <p class="lede"><b>La idea:</b> es la línea más cara de la cuenta (169.991 pesos por registro sobre competencia) y la causa es su nivel de calidad 1, un recargo en cada clic. Invierte 21,7 millones al mes y trae 142 registros, a 152.963 cada uno.</p>
         </div>
 
-        <p class="note"><b>Cómo leer este gráfico.</b> La barra gris de cada fila es el rango de precios del mercado: desde lo que paga el más barato hasta lo que paga el más caro por aparecer arriba en esa búsqueda. El punto negro es lo que paga YaJuego. Cuando el punto queda a la derecha de la barra, estamos pagando por encima de lo que paga cualquiera en ese mercado.</p>
+        <p class="note"><b>Cómo leer este gráfico.</b> La barra gris de cada fila es el rango de precios del mercado, del anunciante más barato al más caro por aparecer arriba. El punto negro es lo que paga YaJuego: a la derecha de la barra, paga más que cualquiera en ese mercado.</p>
         <figure class="figure grow">
           <figcaption>Precio de mercado contra precio que paga Competitor, por búsqueda.</figcaption>
           <div class="axis"><span>0</span><span>13.000 pesos por clic</span></div>
@@ -510,7 +641,7 @@
               <div class="range-foot"><span>El mercado paga entre <b>2.238 y 6.990</b></span><span class="is-neg"><b>1,8 veces el techo</b></span></div>
             </div>
           </div>
-          <p class="chart-foot">Parte de la diferencia es normal: el dueño de una marca puja barato sobre su propio nombre y arrastra el rango hacia abajo, así que cualquiera que conquiste competencia paga más. Pero pagar cinco veces el techo del rango no es eso: es el recargo por nivel de calidad 1.</p>
+          <p class="chart-foot">Parte de la brecha es normal: quien conquista competencia paga más que el dueño de la marca. Pero cinco veces el techo del rango es el recargo del nivel de calidad 1.</p>
         </figure>
 
         <p class="note"><b>Cómo leer este gráfico.</b> Las cuatro campañas compran búsquedas de marcas de la competencia. Tres lo hacen sin proponérselo, por la concordancia amplia. La barra mide cuánto cuesta un registro en cada una, y la campaña hecha para esto es la más larga.</p>
@@ -543,14 +674,17 @@
 
         <div class="panel panel-hi">
           <h3>La acción: pausarla, y comprobar durante un mes si hacía falta.</h3>
-          <p>Pausar antes que reparar, porque arreglar el nivel de calidad exige anuncios y página de destino nuevos, y la demanda ya la está recogiendo otra campaña a un tercio del costo. Libera 21,7 millones al mes. Además la campaña pierde el 76,2% de sus impresiones por presupuesto, así que subirle plata sólo escalaría el problema. <b>Cómo se verifica:</b> a cuatro semanas, si el gasto y los registros sobre búsquedas de competencia se sostienen en las otras tres campañas. Si se sostienen, la campaña no estaba aportando nada propio. Si caen, se reconstruye con anuncios y página propios antes de reactivarla.</p>
+        </div>
+        <div class="rules">
+          <div class="rule-col is-yes"><h3>Qué se hace</h3><ol><li><p>Pausar Search Competitor y liberar 21,7 millones al mes. Pausar antes que reparar: arreglar el nivel de calidad exige anuncios y página nuevos.</p></li><li><p>Vigilar cuatro semanas si el gasto y los registros de competencia se sostienen en Promociones y Genéricos.</p></li></ol></div>
+          <div class="rule-col"><h3>Cómo se lee el resultado</h3><p style="margin-top:22px;color:var(--ink-secondary);font-size:.9rem;line-height:1.5">Si se sostienen, la campaña no aportaba nada propio. Si caen, se reconstruye con anuncios y página propios antes de reactivarla.</p><p style="margin-top:22px;color:var(--ink-secondary);font-size:.9rem;line-height:1.5">No subirle plata: ya pierde el 76,2% de sus impresiones por presupuesto y sólo escalaría el problema.</p></div>
         </div>
       </section>
 
       <section class="grupo" id="mercado">
         <div class="head">
-          <h2>El contexto: YaJuego pelea por el 2% de la demanda de marca del mercado</h2>
-          <p class="lede">Dos preguntas que se le hicieron a las herramientas de Google, el Planificador de Palabras Clave y la de proyección, para acotar qué es realista esperar. Las dos respuestas ponen techo a la ambición, y eso es útil antes de repartir presupuesto.</p>
+          <h2>El contexto: YaJuego pelea por el 2% de la demanda de marca</h2>
+          <p class="lede"><b>La idea:</b> dos consultas a las herramientas de Google ponen techo a la ambición. El Planificador de Palabras Clave muestra que la marca es pequeña frente a BetPlay, y la herramienta de proyección, que subirle presupuesto a Promociones no compra más clics.</p>
         </div>
 
         <p class="note"><b>Cómo leer este gráfico.</b> Cuántas veces al mes la gente busca cada marca por su nombre en Colombia. BetPlay es la barra completa y las demás se dibujan en proporción a ella. En amarillo, YaJuego.</p>
@@ -620,14 +754,17 @@
 
         <div class="panel panel-hi">
           <h3>La acción: crecer por cobertura, no por presupuesto.</h3>
-          <p>Promociones no se escala poniéndole más plata, porque no la gasta. Se escala ampliándole el terreno: el Planificador confirma demanda real y competencia baja en ruleta en línea, el juego de minas y las búsquedas de pagos por Nequi, tres territorios que hoy la cuenta toca de refilón. Y el presupuesto que se libera de Marca y Competencia va a las Performance Max, que sí están limitadas por plata. <b>Cómo se verifica:</b> que Promociones empiece a usar más del 95% de su presupuesto tras la ampliación de palabras clave.</p>
+        </div>
+        <div class="rules">
+          <div class="rule-col is-yes"><h3>Qué se hace</h3><ol><li><p>Ampliar Promociones a ruleta en línea, juego de minas y pagos por Nequi, en frase: demanda real y competencia baja.</p></li><li><p>Llevar el presupuesto liberado de Marca y Competencia a las Performance Max, que sí están limitadas por plata.</p></li></ol></div>
+          <div class="rule-col"><h3>Cómo se verifica</h3><p style="margin-top:22px;color:var(--ink-secondary);font-size:.9rem;line-height:1.5">Promociones pasa a usar más del 95% de su presupuesto tras ampliar las palabras clave.</p></div>
         </div>
       </section>
 
       <section class="grupo" id="embudo">
         <div class="head">
-          <h2>El problema: de cada cien personas que empiezan el registro, terminan nueve</h2>
-          <p class="lede">La pauta lleva 43.164 personas al mes a empezar el formulario de registro. Lo terminan 3.762. La pérdida no está repartida a lo largo del proceso: el 86% se va en la primera pantalla, antes de llegar al segundo paso. Esto no se arregla con pauta, pero condiciona todo lo que la pauta puede lograr.</p>
+          <h2>El problema: sólo 9 de cada 100 terminan el registro</h2>
+          <p class="lede"><b>La idea:</b> la fuga está en la primera pantalla. La pauta lleva 43.164 personas al mes a empezar el formulario y 3.762 lo terminan; el 86% se va antes del segundo paso. No se arregla con pauta, pero limita todo lo que la pauta puede lograr.</p>
         </div>
 
         <p class="note"><b>Cómo leer este gráfico.</b> Cada barra es un paso del registro, y su largo es cuánta gente llega hasta ahí. La primera barra es todo el que empezó. La caída entre la primera y la segunda es la fuga.</p>
@@ -643,140 +780,155 @@
         </figure>
 
         <div class="panel panel-hi">
-          <h3>La acción: revisar la primera pantalla con producto, antes de seguir optimizando pujas.</h3>
-          <p>Hoy llega al paso 2 el 14,0% de quienes empiezan. Subir ese tramo a 17% añadiría unos 800 registros al mes, cerca de un 21% más de lo que trae la cuenta hoy, sin un peso adicional de inversión. Que hay margen lo dice la propia cuenta: en Promociones el 14,4% de quienes empiezan terminan el registro, y en Marca sólo el 7,3%, aunque Marca trae el público más caliente. Es el mismo formulario; lo que cambia es con qué expectativa llega la persona, y eso vuelve a apuntar al anuncio.</p>
+          <h3>La acción: revisar la primera pantalla con producto, antes de ajustar más pujas.</h3>
+        </div>
+        <div class="rules">
+          <div class="rule-col is-yes"><h3>Qué se hace</h3><ol><li><p>Revisar la primera pantalla del formulario con el equipo de producto.</p></li><li><p>Llevar el paso 1 al paso 2 de 14% a 17% sumaría unos 800 registros al mes (21% más), sin inversión.</p></li></ol></div>
+          <div class="rule-col"><h3>Por qué hay margen</h3><p style="margin-top:22px;color:var(--ink-secondary);font-size:.9rem;line-height:1.5">En Promociones termina el registro el 14,4% de quienes empiezan; en Marca, el 7,3%. Es el mismo formulario: cambia la expectativa con que llega la persona.</p></div>
         </div>
       </section>
 
       <section class="grupo" id="plan">
         <div class="head">
-          <h2>Plan de acción</h2>
-          <p class="lede">Las mismas acciones de cada sección, reunidas y en orden de ejecución. El orden no es por importancia sino por dependencia: sin la medición arreglada, las decisiones de presupuesto no se pueden evaluar. Cada línea trae por qué se hace, cómo se aborda y qué se toca exactamente.</p>
+          <h2>Plan de acción: once movimientos en cuatro semanas</h2>
+          <p class="lede"><b>La idea:</b> las mismas acciones de cada sección, en orden de dependencia y no de importancia. Cada línea dice por qué, cómo y qué se toca.</p>
         </div>
+
+        <dl class="tira-cifras"><div><dt>Medición y anuncio de Marca</dt><dd>Semana 1</dd></div><div><dt>Frontera, exclusiones y pausa de Competencia</dt><dd>Semana 2</dd></div><div><dt>Grupos por intención y presupuesto</dt><dd>Semana 3</dd></div><div><dt>Techo de puja, cobertura y decisiones</dt><dd>Semana 4</dd></div></dl>
 
         <ol class="orders">
           <li>
             <div>
-              <h3>Que todas las campañas persigan el registro</h3>
+              <h3>Separar adquisición de retención</h3>
               <p class="note">Semana 1 · Medición</p>
-              <p><b>Por qué.</b> Mientras cinco campañas se midan con otro contador, sus resultados no se pueden comparar ni con el resto ni con el objetivo del negocio.</p>
+              <p><b>Por qué.</b> La cuenta mezcla clientes nuevos y recurrentes en un solo costo por registro.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Unificar la meta de conversión de las dieciséis campañas en el registro completado, y bajar <code>purchase</code> a métrica de observación.</p>
-              <p><b>Qué se toca.</b> Meta de conversión en Demand Gen Manifesto / Purchase, Demand Gen Bono Activa tu Suerte y PMax Beneficios YaJuego (new videos), que suman 19,7 millones al mes. Tipo de conteo de <code>purchase</code>, de «cada apuesta» a «una por persona». Revisión con medición por la caída de mayo.</p>
+              <p><b>Cómo.</b> Darle a cada campaña un papel: adquisición (registro, luego FTD) o retención (<code>purchase</code>).</p>
+              <p><b>Qué se toca.</b> Meta de las tres campañas con <code>purchase</code> (19,7 M al mes) y conteo de <code>purchase</code> a «una por persona».</p>
             </div>
           </li>
           <li>
             <div>
               <h3>Llevarle a Marca el anuncio de Promociones</h3>
               <p class="note">Semana 1 · Marca</p>
-              <p><b>Por qué.</b> El público más caliente de la cuenta recibe el mensaje más flojo. El mismo término convierte al 8,3% con oferta y al 4,5% sin ella.</p>
+              <p><b>Por qué.</b> El mismo término convierte al 8,3% con oferta y al 4,5% sin ella.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Duplicar los anuncios ya validados en lugar de escribir nuevos, y dejar los actuales activos para poder comparar.</p>
-              <p><b>Qué se toca.</b> Anuncios adaptables dentro del grupo de Brand. No cuesta inversión adicional. A catorce días se compara la tasa de registro sobre «yajuego».</p>
+              <p><b>Cómo.</b> Duplicar los anuncios validados y dejar los actuales para comparar.</p>
+              <p><b>Qué se toca.</b> Anuncios de Marca. Sin costo; a 14 días se compara la tasa de registro sobre «yajuego».</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>Cerrarle a Marca la salida hacia competencia y genéricos</h3>
+              <h3>Armar la lista de clientes y probar «sólo clientes nuevos»</h3>
+              <p class="note">Semanas 2 y 3 · Medición</p>
+              <p><b>Por qué.</b> El registro solo no aparta a los recurrentes: Marca tiene 107 apuestas y 5 registros por 100 clics.</p>
+            </div>
+            <div>
+              <p><b>Cómo.</b> Subir la lista y activar el modo en una sola campaña de adquisición.</p>
+              <p><b>Qué se toca.</b> Customer Match o audiencia de GA4 (mínimo 100, mejor más de 1.000); modo en Marca; comparar a 14 días.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Cerrarle a Marca la salida</h3>
               <p class="note">Semana 2 · Marca</p>
-              <p><b>Por qué.</b> Brand se queda sin presupuesto en el 27,8% de las subastas de su propio nombre mientras destina 32,4 millones al mes a búsquedas que no lo nombran.</p>
+              <p><b>Por qué.</b> Marca gasta 32,4 M al mes en búsquedas que no la nombran y pierde el 27,8% de su propio nombre.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Acotar la concordancia y poner la frontera, para que el presupuesto que ya tiene se quede dentro del territorio de marca.</p>
-              <p><b>Qué se toca.</b> Pasar de amplia a frase «Ya juego», «ya juego apuestas», «yajuego app», «ya juego casino» y «yajuego iniciar sesión». Lista de exclusiones con marcas de la competencia y casinos de figuras públicas.</p>
+              <p><b>Cómo.</b> Acotar la concordancia y poner la frontera.</p>
+              <p><b>Qué se toca.</b> Variantes de marca a frase; exclusiones de competencia y genéricos en Marca.</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>Repartir el territorio entre las campañas</h3>
+              <h3>Repartir el territorio entre campañas</h3>
               <p class="note">Semana 2 · Estructura</p>
-              <p><b>Por qué.</b> El 91,3% del gasto de búsqueda cae en términos que se disputan dos o más campañas propias. Ninguna aprende con la información completa.</p>
+              <p><b>Por qué.</b> El 91,3% del gasto de búsqueda se disputa entre campañas propias.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Cuatro listas de exclusión compartidas, una por territorio, atadas de forma cruzada. Es lo que hoy no existe: la cuenta no tiene ninguna exclusión.</p>
-              <p><b>Qué se toca.</b> La marca sólo en Marca, las promociones sólo en Promociones, los genéricos sólo en Genéricos. Aparte, la lista corta de 31 términos sin valor, que son 140.408 pesos al mes.</p>
+              <p><b>Cómo.</b> Cuatro listas de exclusión cruzadas, una por territorio.</p>
+              <p><b>Qué se toca.</b> Marca propia fuera de Promociones y Genéricos; competencia fuera de Marca; genéricos fuera de Marca; promocionales fuera de Genéricos; más 31 términos sin valor.</p>
             </div>
           </li>
           <li>
             <div>
               <h3>Pausar la campaña de competencia</h3>
               <p class="note">Semana 2 · Presupuesto</p>
-              <p><b>Por qué.</b> Paga hasta cinco veces el precio de mercado por su nivel de calidad 1, y entrega registros a 169.991 pesos cuando Promociones consigue los mismos a 51.496.</p>
+              <p><b>Por qué.</b> Paga hasta cinco veces el precio de mercado y entrega a 169.991 contra 51.496 de Promociones.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Pausar antes que reparar, y usar las cuatro semanas siguientes como prueba de si aportaba algo propio.</p>
-              <p><b>Qué se toca.</b> Search Competitor pasa a pausada y libera 21,7 millones al mes. Se vigila si el gasto y los registros de competencia se sostienen en las otras tres campañas.</p>
+              <p><b>Cómo.</b> Pausar antes que reparar, y usar cuatro semanas como prueba.</p>
+              <p><b>Qué se toca.</b> Search Competitor (libera 21,7 M al mes); vigilar la competencia en Promociones y Genéricos.</p>
             </div>
           </li>
           <li>
             <div>
               <h3>Partir los grupos únicos por intención</h3>
               <p class="note">Semana 3 · Estructura</p>
-              <p><b>Por qué.</b> Tres campañas con 196,9 millones al mes tienen un solo grupo de anuncios cada una, así que quien busca «bono sin depósito» y quien busca «yajuego iniciar sesión» reciben el mismo mensaje.</p>
+              <p><b>Por qué.</b> Tres campañas con 196,9 M al mes tienen un solo grupo y un solo anuncio.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Usar los grupos de búsquedas que el Planificador ya validó como demanda real, no como hipótesis.</p>
-              <p><b>Qué se toca.</b> Promociones se divide en bono sin depósito, pagos por Nequi, juegos que pagan, casino en vivo y ruleta. Genéricos, en apuestas deportivas, casas de apuestas y fútbol. Cada grupo con su anuncio.</p>
+              <p><b>Cómo.</b> Usar los grupos que el Planificador ya validó como demanda real.</p>
+              <p><b>Qué se toca.</b> Promociones en cinco grupos, Genéricos en tres, y un anuncio por grupo.</p>
             </div>
           </li>
           <li>
             <div>
-              <h3>Mover el presupuesto liberado a lo que está ahogado</h3>
+              <h3>Mover el presupuesto liberado</h3>
               <p class="note">Semana 3 en adelante · Presupuesto</p>
-              <p><b>Por qué.</b> Las campañas más baratas de la cuenta se quedan sin plata, y la que más plata tiene no la gasta. El dinero está justo al revés.</p>
+              <p><b>Por qué.</b> Las campañas más baratas se quedan sin plata y Promociones no gasta la suya.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Por pasos del 30% semanal, y sólo donde la pérdida de impresiones sea por presupuesto y no por puja.</p>
-              <p><b>Qué se toca.</b> PMax Bono Activa tu Suerte de 350.000 a 455.000 al día, y PMax Juégala Toda de 50.000 a 65.000. A Promociones no se le sube: la proyección muestra que un 63% más de presupuesto le compra nueve clics. Se verifica que el costo por registro se mantenga bajo 55.000 en cada paso.</p>
+              <p><b>Cómo.</b> Pasos de 30% por semana, sólo donde se pierde por presupuesto.</p>
+              <p><b>Qué se toca.</b> PMax Bono de 350.000 a 455.000 al día; PMax Juégala Toda de 50.000 a 65.000; nada a Promociones. Costo bajo 55.000 en cada paso.</p>
             </div>
           </li>
           <li>
             <div>
               <h3>Ponerle techo a la puja de marca</h3>
               <p class="note">Semana 4 · Marca</p>
-              <p><b>Por qué.</b> Sin un costo objetivo, la estrategia de puja no tiene ninguna razón para detenerse, y en «yajuego casino» ya se paga por encima del techo del mercado.</p>
+              <p><b>Por qué.</b> Sin costo objetivo la puja no se detiene; en «yajuego casino» ya paga sobre el techo del mercado.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Fijar un costo por registro objetivo y acercarlo por pasos, sin saltos, para que la puja no deje de competir.</p>
-              <p><b>Qué se toca.</b> Empezar en 70.000 pesos, un 25% bajo los 87.497 de hoy, y bajar un paso semanal apuntando a los 41.661 que Promociones ya consigue. Si la entrega diaria cae más de un 15%, se devuelve el paso.</p>
+              <p><b>Cómo.</b> Un costo objetivo por registro, bajado por pasos.</p>
+              <p><b>Qué se toca.</b> Empezar en 70.000 (25% bajo los 87.497 de hoy) hacia 41.661; devolver el paso si la entrega cae más de 15%.</p>
             </div>
           </li>
           <li>
             <div>
               <h3>Ampliarle el terreno a Promociones</h3>
               <p class="note">Semana 4 · Cobertura</p>
-              <p><b>Por qué.</b> Es la campaña que mejor convierte y no logra gastar lo que tiene. Su límite es de terreno, no de plata.</p>
+              <p><b>Por qué.</b> Es la que mejor convierte y no gasta lo que tiene: su límite es de terreno.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Entrar a los territorios que el Planificador marca con demanda real y competencia baja, y que hoy la cuenta toca de refilón.</p>
-              <p><b>Qué se toca.</b> Ruleta en línea, el juego de minas y pagos por Nequi, en concordancia de frase dentro de sus grupos nuevos. Se verifica que la campaña pase a usar más del 95% de su presupuesto.</p>
+              <p><b>Cómo.</b> Entrar a los territorios con demanda real y competencia baja.</p>
+              <p><b>Qué se toca.</b> Ruleta en línea, juego de minas y pagos por Nequi, en frase. Meta: que use más del 95% de su presupuesto.</p>
             </div>
           </li>
           <li>
             <div>
               <h3>Decidir qué pasa con lo que no entrega</h3>
               <p class="note">Semana 4 · Presupuesto</p>
-              <p><b>Por qué.</b> Una línea sin resultado bajo el indicador acordado no es una apuesta de largo plazo mientras nadie la haya decidido como tal. Si cumple otro objetivo, hay que nombrarlo.</p>
+              <p><b>Por qué.</b> Una línea sin resultado no es una apuesta de largo plazo hasta que alguien lo decida.</p>
             </div>
             <div>
-              <p><b>Cómo.</b> Poner plazo y criterio en lugar de dejarlas corriendo por inercia. La decisión es del cliente, pero necesita estar tomada.</p>
-              <p><b>Qué se toca.</b> Demand Gen, YouTube y App suman 25,2 millones al mes por 71 registros: o se les fija objetivo de registro con cuatro semanas de plazo, o se cierran. Ruta del Campeón, activa con 130.000 al día y cero impresiones en treinta días, se cierra ya.</p>
+              <p><b>Cómo.</b> Poner plazo y criterio, no inercia. La decisión es del cliente.</p>
+              <p><b>Qué se toca.</b> Demand Gen, YouTube y App (25,2 M al mes, 71 registros): objetivo con cuatro semanas, o cierre. Ruta del Campeón se cierra ya.</p>
             </div>
           </li>
         </ol>
 
         <h3>Lo que no se resuelve en Google Ads</h3>
-        <p class="note">Dos frentes que condicionan el resultado y dependen de otros equipos.</p>
         <ol class="orders">
           <li>
             <h3>La primera pantalla del registro</h3>
-            <p>El 86% de quienes empiezan no llegan a la segunda pantalla. Tres puntos de mejora ahí valen unos 800 registros al mes, más que cualquier movimiento de presupuesto de esta lista, y no cuestan inversión. Conviene revisarlo con producto antes de seguir ajustando pujas.</p>
+            <p>El 86% no llega a la segunda pantalla. Tres puntos de mejora valen unos 800 registros al mes, sin costo de pauta. Conviene revisarlo con producto antes de seguir ajustando pujas.</p>
           </li>
           <li>
-            <h3>Qué vale un cliente nuevo</h3>
-            <p>Mientras el primer depósito no exista como evento en Google Ads, el registro es el mejor indicador disponible, pero sigue siendo un sustituto. Cuando llegue la información comercial habrá que releer esta auditoría: lo más probable es que cambie el orden entre Promociones y Genéricos, y que confirme lo de Competencia y Demand Gen.</p>
+            <h3>Llevar el FTD a Google Ads</h3>
+            <p>Hasta que el primer depósito llegue como conversión, el registro es un sustituto. Con la información comercial se importa el FTD y se puja por él junto con «sólo clientes nuevos». Probablemente cambie el orden entre Promociones y Genéricos.</p>
           </li>
         </ol>
       </section>
@@ -835,5 +987,6 @@
     });
   })();
   </script>
+  <script>window.addEventListener('beforeprint',function(){document.querySelectorAll('details').forEach(function(d){d.open=true})})</script>
 </body>
 </html>
